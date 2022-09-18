@@ -251,7 +251,7 @@ void RemoteTCPInput::applySettings(const RemoteTCPInputSettings& settings, bool 
     if ((m_settings.m_log2Decim != settings.m_log2Decim) || force) {
         reverseAPIKeys.append("log2Decim");
     }
-    if ((m_settings.m_gain != settings.m_gain) || force) {
+    if (std::equal(m_settings.m_gain, m_settings.m_gain + RemoteTCPInputSettings::m_maxGains, settings.m_gain) || force) {
         reverseAPIKeys.append("gain");
     }
     if ((m_settings.m_agc != settings.m_agc) || force) {
